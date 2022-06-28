@@ -9,6 +9,7 @@ const CustomBtn = ({
   leftIcon,
   rightIcon,
   disabled,
+  type
 }) => {
   return (
     <>
@@ -54,6 +55,7 @@ const CustomBtn = ({
           bgColor="#00885C"
           _hover={{ backgroundColor: "#005B3E" }}
           _active={{ backgroundColor: "#21D233" }}
+          type={typeof type === 'string' ? type : 'button'}
         >
           {typeof text === "string" ? text : "Submit"}
         </Button>
