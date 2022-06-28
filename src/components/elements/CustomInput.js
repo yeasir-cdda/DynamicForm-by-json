@@ -9,6 +9,8 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useContext } from "react";
+import { formContext } from "../../FormContext";
 import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 
 const CustomInput = ({
@@ -24,8 +26,8 @@ const CustomInput = ({
   rightIcon,
   name,
   required,
-  register
 }) => {
+
   // const [input, setInput] = useState('');
 
   return (
@@ -65,7 +67,7 @@ const CustomInput = ({
           ""
         )}
         <Input
-        {...register("firstName")}
+        
           _focus={{ backgroundColor: "green.100" }}
           _focusVisible={{ borderColor: "green", borderWidth: "2px" }}
           placeholder={typeof placeholder === "string" ? placeholder : ""}

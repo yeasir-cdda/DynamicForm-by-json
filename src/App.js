@@ -1,6 +1,7 @@
 import CustomBtn from "../src/components/CustomBtn";
 import CustomInput from "./components/elements/CustomInput";
 import formElement from "./formElement.json";
+import { formContext } from "./FormContext";
 import {
   Checkbox,
   Container,
@@ -13,25 +14,31 @@ import { useEffect, useState } from "react";
 import Elements from "./components/Elements";
 import { useForm } from "react-hook-form";
 function App() {
-
-
   const [elements, setElements] = useState({});
   useEffect(() => {
     setElements(formElement[0]);
   }, []);
-  const { register, handleSubmit, } = useForm();
-  const onSubmit = data => console.log(data);
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
   const { page_label, fields } = elements;
+  
   return (
     <Container mt="10" maxW={"5xl"}>
-     
+      <formContext.Provider value={register}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Text fontSize={"3xl"} fontWeight="semibold">
           {page_label}
         </Text>
         {
-        fields ?  fields.map((field, i)=><Elements register={register} key={i} field={field}/>) : null
+        fields ?  fields.map((field, i)=><Elements  key={i} field={field}/>) : null
       }
+        {/* <CustomInput
+        register={register}
+          required
+          name={'fgf'}
+          label={"Name"}
+          placeholder={"Enter your name"}
+        /> */}
         {/* <CustomInput
           required
           name="name"
@@ -61,6 +68,7 @@ function App() {
         </Checkbox> */}
         <CustomBtn type={"submit"} />
       </form>
+      </formContext.Provider>
     </Container>
   );
 }
