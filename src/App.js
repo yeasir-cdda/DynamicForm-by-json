@@ -24,18 +24,19 @@ function App() {
   
   return (
     <Container mt="10" maxW={"5xl"}>
-      <formContext.Provider value={register}>
+      
       <form onSubmit={handleSubmit(onSubmit)}>
         <Text fontSize={"3xl"} fontWeight="semibold">
           {page_label}
         </Text>
         {
-        fields ?  fields.map((field, i)=><Elements  key={i} field={field}/>) : null
+        fields ?  fields.map((field, i)=><Elements  key={i} field={field} register={register}/>) : null
       }
         {/* <CustomInput
-        register={register}
+        register = {register}
           required
-          name={'fgf'}
+          id={'name'}
+          name={'name'}
           label={"Name"}
           placeholder={"Enter your name"}
         /> */}
@@ -68,7 +69,7 @@ function App() {
         </Checkbox> */}
         <CustomBtn type={"submit"} />
       </form>
-      </formContext.Provider>
+      
     </Container>
   );
 }

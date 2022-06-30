@@ -2,9 +2,8 @@ import { Checkbox, Link, Select } from "@chakra-ui/react";
 import { useContext } from "react";
 import CustomInput from "../components/elements/CustomInput";
 import { formContext } from "../FormContext";
-import CustomSelect from "./elements/Select";
-const Elements = ({ field }) => {
-
+import { useForm } from "react-hook-form";
+const Elements = ({ field, register }) => {
   const {
     field_id,
     field_label,
@@ -30,6 +29,7 @@ const Elements = ({ field }) => {
             {field_label}
           </label>
           <Select
+          {...register(field_id)}
             id={field_id}
             required={field_mandatory}
             placeholder="Please select One"
@@ -45,6 +45,7 @@ const Elements = ({ field }) => {
     case "checkbox":
       return (
         <Checkbox
+        {...register('checkbox')}
           id={field_id}
           required={field_mandatory}
           display={"block"}
@@ -58,8 +59,7 @@ const Elements = ({ field }) => {
     default:
       return (
         <CustomInput
-          // register={register}
-          //{...register("test")}
+         register={register}
           name={field_id}
           id={field_id}
           label={field_label}

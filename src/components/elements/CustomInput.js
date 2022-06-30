@@ -26,6 +26,7 @@ const CustomInput = ({
   rightIcon,
   name,
   required,
+  register
 }) => {
 
   // const [input, setInput] = useState('');
@@ -67,7 +68,7 @@ const CustomInput = ({
           ""
         )}
         <Input
-        
+        {...register(id)}
           _focus={{ backgroundColor: "green.100" }}
           _focusVisible={{ borderColor: "green", borderWidth: "2px" }}
           placeholder={typeof placeholder === "string" ? placeholder : ""}
